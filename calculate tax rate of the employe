@@ -1,0 +1,37 @@
+
+class Employee:
+    def _init_(self, name, emp_id, department, salary, net_worth):
+        self.name = name
+        self.emp_id = emp_id
+        self.department = department
+        self.salary = salary
+        self.net_worth = net_worth
+
+    def calculate_tax_deduction(self):
+        if self.net_worth <= 300000:
+            tax_rate = 0
+        elif 300000 < self.net_worth <= 500000:
+            tax_rate = 0.1
+        else:
+            tax_rate = 0.15
+        return self.net_worth * tax_rate
+
+
+def display_employee_table(employees):
+    print("{:<15} {:<10} {:<15} {:<10} {:<15} {:<10}".format("Name", "ID", "Department", "Salary", "Net Worth", "Tax Deduction"))
+    for emp in employees:
+        tax_deduction = emp.calculate_tax_deduction()
+        print("{:<15} {:<10} {:<15} {:<10} {:<15} {:<10}".format(emp.name, emp.emp_id, emp.department, emp.salary, emp.net_worth, tax_deduction))
+employees_list = []
+num_employees = int(input("Enter the number of employees: "))
+for i in range(num_employees):
+    print(f"\nEnter details for Employee {i + 1}:")
+    name = input("Name: ")
+    emp_id = input("ID: ")
+    department = input("Department: ")
+    salary = input("Salary: ")
+    net_worth = float(input("Net Worth: "))
+    emp_obj = Employee(name, emp_id, department, salary, net_worth)
+    employees_list.append(emp_obj)
+print("\nEmployee Details:")
+display_employee_table(employees_list)
